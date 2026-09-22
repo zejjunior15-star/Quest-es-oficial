@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código Penal — Oficial de Justiça</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <h1>Código Penal</h1>
+      <p>Flashcards para Oficial de Justiça</p>
+    </header>
+
+    <section class="stats-panel">
+      <div id="progress">Questão 1 de 52</div>
+      <div id="stats">Acertos: 0 · Erros: 0 · Aproveitamento: 0%</div>
+    </section>
+
+    <section class="card">
+      <div class="card-label">Complete a lacuna</div>
+
+      <div id="question" class="question"></div>
+
+      <div id="answer" class="answer hidden"></div>
+
+      <button id="answerBtn" class="primary">Mostrar resposta</button>
+
+      <div class="evaluation">
+        <button id="wrongBtn" class="wrong" disabled>Errei</button>
+        <button id="correctBtn" class="correct" disabled>Acertei</button>
+      </div>
+    </section>
+
+    <div class="navigation">
+      <button id="prevBtn">← Anterior</button>
+      <button id="nextBtn">Próxima →</button>
+    </div>
+
+    <div class="tools">
+      <button id="shuffleBtn">🔀 Embaralhar</button>
+      <button id="resetBtn">↻ Zerar progresso</button>
+    </div>
+
+    <div class="shortcut">
+      <strong>Dica:</strong> use a barra de espaço para mostrar a resposta e as setas ← → para navegar.
+    </div>
+  </main>
+
+  <footer>
+    <p>Esse site é gratuito.</p>
+    <p>Desenvolvido por <strong>@Zeapenasconcurseiro</strong>, no Instagram.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
