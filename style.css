@@ -122,56 +122,6 @@ button {
   box-shadow: 0 0 12px rgba(53,208,127,.65);
 }
 
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
-  padding: 48px 0 30px;
-}
-
-.eyebrow {
-  color: #7ea0ff;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.7px;
-  margin-bottom: 13px;
-}
-
-.hero h1 {
-  margin: 0;
-  font-size: clamp(32px, 5vw, 51px);
-  line-height: 1.05;
-  letter-spacing: -2.2px;
-}
-
-.hero h1 span {
-  color: #809fff;
-}
-
-.hero p {
-  max-width: 640px;
-  color: var(--muted);
-  line-height: 1.65;
-  font-size: 14px;
-  margin: 18px 0 0;
-}
-
-.hero-mark {
-  width: 120px;
-  height: 120px;
-  flex: 0 0 120px;
-  border-radius: 30px;
-  border: 1px solid rgba(126,160,255,.18);
-  background: linear-gradient(145deg, rgba(91,140,255,.14), rgba(167,139,250,.05));
-  display: grid;
-  place-items: center;
-  color: rgba(126,160,255,.55);
-  font-weight: 800;
-  font-size: 34px;
-  letter-spacing: -2px;
-  transform: rotate(4deg);
-}
 
 .dashboard {
   display: grid;
@@ -541,13 +491,6 @@ button:disabled {
     display: none;
   }
 
-  .hero {
-    padding-top: 35px;
-  }
-
-  .hero-mark {
-    display: none;
-  }
 
   .dashboard {
     grid-template-columns: 1fr 1fr;
