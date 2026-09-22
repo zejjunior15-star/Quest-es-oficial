@@ -3,55 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Código Penal — Oficial de Justiça</title>
+  <meta name="theme-color" content="#0b1020">
+  <title>Questões Oficial — Código Penal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <main class="container">
-    <header>
-      <h1>Código Penal</h1>
-      <p>Flashcards para Oficial de Justiça</p>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">⚖</div>
+        <div>
+          <div class="brand-title">Questões Oficial</div>
+          <div class="brand-subtitle">Código Penal • Oficial de Justiça</div>
+        </div>
+      </div>
+
+      <div class="header-badge">
+        <span class="status-dot"></span>
+        Estudo ativo
+      </div>
     </header>
 
-    <section class="stats-panel">
-      <div id="progress">Questão 1 de 52</div>
-      <div id="stats">Acertos: 0 · Erros: 0 · Aproveitamento: 0%</div>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">FLASHCARDS DE REVISÃO</div>
+        <h1>Domine o Código Penal<br><span>uma questão por vez.</span></h1>
+        <p>Leia, tente lembrar a resposta e só então revele a lacuna. Seu progresso fica salvo neste navegador.</p>
+      </div>
+      <div class="hero-mark">CP</div>
     </section>
 
-    <section class="card">
-      <div class="card-label">Complete a lacuna</div>
+    <section class="dashboard">
+      <div class="stat-card">
+        <div class="stat-icon blue">✓</div>
+        <div>
+          <div class="stat-label">Acertos</div>
+          <div id="correctStat" class="stat-value">0</div>
+        </div>
+      </div>
 
+      <div class="stat-card">
+        <div class="stat-icon red">×</div>
+        <div>
+          <div class="stat-label">Erros</div>
+          <div id="wrongStat" class="stat-value">0</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon purple">%</div>
+        <div>
+          <div class="stat-label">Aproveitamento</div>
+          <div id="accuracyStat" class="stat-value">0%</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon gold">#</div>
+        <div>
+          <div class="stat-label">Questão</div>
+          <div id="questionStat" class="stat-value">1/52</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="progress-wrap">
+      <div class="progress-info">
+        <span>Progresso da sessão</span>
+        <strong id="progressText">1 de 52</strong>
+      </div>
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+    </section>
+
+    <section class="question-card">
+      <div class="question-top">
+        <span class="pill">Complete a lacuna</span>
+        <span class="article-tag" id="articleTag">Art. 1º</span>
+      </div>
+
+      <div class="question-number" id="questionNumber">QUESTÃO 01</div>
       <div id="question" class="question"></div>
 
-      <div id="answer" class="answer hidden"></div>
+      <div id="answerBox" class="answer-box hidden">
+        <div class="answer-label">RESPOSTA</div>
+        <div id="answer" class="answer"></div>
+      </div>
 
-      <button id="answerBtn" class="primary">Mostrar resposta</button>
+      <button id="answerBtn" class="reveal-btn">
+        <span>Mostrar resposta</span>
+        <span class="key-hint">ESPAÇO</span>
+      </button>
 
       <div class="evaluation">
-        <button id="wrongBtn" class="wrong" disabled>Errei</button>
-        <button id="correctBtn" class="correct" disabled>Acertei</button>
+        <button id="wrongBtn" class="eval-btn wrong" disabled>
+          <span class="eval-symbol">×</span>
+          Errei
+        </button>
+        <button id="correctBtn" class="eval-btn correct" disabled>
+          <span class="eval-symbol">✓</span>
+          Acertei
+        </button>
       </div>
     </section>
 
     <div class="navigation">
-      <button id="prevBtn">← Anterior</button>
-      <button id="nextBtn">Próxima →</button>
+      <button id="prevBtn" class="nav-btn secondary">← <span>Anterior</span></button>
+      <button id="nextBtn" class="nav-btn primary">Próxima <span>→</span></button>
     </div>
 
     <div class="tools">
-      <button id="shuffleBtn">🔀 Embaralhar</button>
-      <button id="resetBtn">↻ Zerar progresso</button>
+      <button id="shuffleBtn" class="tool-btn">↗ <span>Embaralhar questões</span></button>
+      <button id="resetBtn" class="tool-btn danger">↻ <span>Zerar progresso</span></button>
     </div>
 
-    <div class="shortcut">
-      <strong>Dica:</strong> use a barra de espaço para mostrar a resposta e as setas ← → para navegar.
+    <div class="keyboard-tip">
+      <span>⌨</span>
+      <div><strong>Atalhos:</strong> Espaço revela a resposta • ← → navegam entre as questões</div>
     </div>
   </main>
 
   <footer>
-    <p>Esse site é gratuito.</p>
-    <p>Desenvolvido por <strong>@Zeapenasconcurseiro</strong>, no Instagram.</p>
+    <div class="footer-brand">Questões Oficial</div>
+    <div>Esse site é gratuito.</div>
+    <div>Desenvolvido por <a href="https://www.instagram.com/Zeapenasconcurseiro/" target="_blank" rel="noopener">@Zeapenasconcurseiro</a>, no Instagram.</div>
   </footer>
 
   <script src="script.js"></script>
