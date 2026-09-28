@@ -1,362 +1,138 @@
-const cards = [
-  {
-    "q": "Art. 1º - Não há crime __________ que o defina. Não há pena sem prévia cominação legal.",
-    "a": "sem lei anterior"
-  },
-  {
-    "q": "Art. 2º - Ninguém pode ser punido por fato que lei posterior __________ crime, cessando em virtude dela a execução e os efeitos penais da sentença condenatória.\n\nParágrafo único - A lei posterior, que de qualquer modo favorecer o agente, aplica-se aos fatos anteriores, ainda que decididos por sentença condenatória transitada em julgado.",
-    "a": "deixa de considerar"
-  },
-  {
-    "q": "Art. 3º - A lei excepcional ou temporária, embora decorrido o período de sua duração ou cessadas as circunstâncias que a determinaram, __________ ao fato praticado durante sua vigência.",
-    "a": "aplica-se"
-  },
-  {
-    "q": "Art. 4º - Considera-se praticado o crime no momento da __________ ou omissão, ainda que outro seja o momento do resultado.",
-    "a": "ação"
-  },
-  {
-    "q": "Art. 5º - Aplica-se a lei brasileira, sem prejuízo de convenções, tratados e regras de direito internacional, ao crime cometido no __________.\n\n§ 1º - Para os efeitos penais, consideram-se como extensão do território nacional as embarcações e aeronaves brasileiras, de natureza pública ou a serviço do governo brasileiro onde quer que se encontrem, bem como as aeronaves e as embarcações brasileiras, mercantes ou de propriedade privada, que se achem, respectivamente, no espaço aéreo correspondente ou em alto-mar.\n\n§ 2º - É também aplicável a lei brasileira aos crimes praticados a bordo de aeronaves ou embarcações estrangeiras de propriedade privada, achando-se aquelas em pouso no território nacional ou em vôo no espaço aéreo correspondente, e estas em porto ou mar territorial do Brasil.",
-    "a": "território nacional"
-  },
-  {
-    "q": "Art. 6º - Considera-se praticado o crime no lugar em que ocorreu a ação ou omissão, no todo ou em parte, bem como onde se produziu ou __________ produzir-se o resultado.",
-    "a": "deveria"
-  },
-  {
-    "q": "Art. 8º - A pena cumprida no estrangeiro __________ a pena imposta no Brasil pelo mesmo crime, quando diversas, ou nela é computada, quando idênticas.",
-    "a": "atenua"
-  },
-  {
-    "q": "Art. 10 - O dia do começo __________ no cômputo do prazo. Contam-se os dias, os meses e os anos pelo calendário comum.",
-    "a": "inclui-se"
-  },
-  {
-    "q": "Art. 12 - As regras gerais deste Código aplicam-se aos fatos incriminados por lei especial, se esta não __________ de modo diverso.",
-    "a": "dispuser"
-  },
-  {
-    "q": "Art. 100 - A ação penal é pública, salvo quando a lei expressamente a declara __________ do ofendido.\n\n§ 1º - A ação pública é promovida pelo Ministério Público, dependendo, quando a lei o exige, de representação do ofendido ou de requisição do Ministro da Justiça.\n\n§ 2º - A ação de iniciativa privada é promovida mediante queixa do ofendido ou de quem tenha qualidade para representá-lo.\n\n§ 3º - A ação de iniciativa privada pode intentar-se nos crimes de ação pública, se o Ministério Público não oferece denúncia no prazo legal.\n\n§ 4º - No caso de morte do ofendido ou de ter sido declarado ausente por decisão judicial, o direito de oferecer queixa ou de prosseguir na ação passa ao cônjuge, ascendente, descendente ou irmão.",
-    "a": "privativa"
-  },
-  {
-    "q": "Art. 102 - A representação será irretratável depois de oferecida a __________.",
-    "a": "denúncia"
-  },
-  {
-    "q": "Art. 103 - Salvo disposição expressa em contrário, o ofendido decai do direito de queixa ou de representação se não o exerce dentro do prazo de __________ meses, contado do dia em que veio a saber quem é o autor do crime, ou, no caso do § 3º do art. 100 deste Código, do dia em que se esgota o prazo para oferecimento da denúncia.\n\nParágrafo único. Nos crimes praticados no âmbito de violência doméstica e familiar contra a mulher, a ofendida decai do direito de queixa ou de representação se não o exerce no prazo de 12 (doze) meses, contado do dia em que veio a saber quem é o autor do crime, ou, no caso do § 3º do art. 100 deste Código, do dia em que se esgota o prazo para oferecimento da denúncia.",
-    "a": "6 (seis)"
-  },
-  {
-    "q": "Art. 104 - O direito de queixa não pode ser exercido quando renunciado expressa ou __________.\n\nParágrafo único - Importa renúncia tácita ao direito de queixa a prática de ato incompatível com a vontade de exercê-lo; não a implica, todavia, o fato de receber o ofendido a indenização do dano causado pelo crime.",
-    "a": "tacitamente"
-  },
-  {
-    "q": "Art. 105 - O perdão do ofendido, nos crimes em que somente se procede mediante queixa, __________ ao prosseguimento da ação.",
-    "a": "obsta"
-  },
-  {
-    "q": "Art. 118 - As penas mais leves __________ com as mais graves.",
-    "a": "prescrevem"
-  },
-  {
-    "q": "Art. 119 - No caso de concurso de crimes, a extinção da punibilidade incidirá sobre a pena de cada um, __________.",
-    "a": "isoladamente"
-  },
-  {
-    "q": "Art. 120 - A sentença que conceder perdão judicial não será considerada para efeitos de __________.",
-    "a": "reincidência"
-  },
-  {
-    "q": "Art. 121. __________: Pena - reclusão, de seis a vinte anos.\n\n§ 1º Se o agente comete o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de um sexto a um terço.\n\n§ 2º Se o homicídio é cometido: I - mediante paga ou promessa de recompensa, ou por outro motivo torpe; II - por motivo futil; III - com emprego de veneno, fogo, explosivo, asfixia, tortura ou outro meio insidioso ou cruel, ou de que possa resultar perigo comum; IV - à traição, de emboscada, ou mediante dissimulação ou outro recurso que dificulte ou torne impossivel a defesa do ofendido; V - para assegurar a execução, a ocultação, a impunidade ou vantagem de outro crime: Pena - reclusão, de doze a trinta anos.\n\nVI - (Revogado); VII – contra: a) autoridade ou agente descrito nos arts. 142 e 144 da Constituição Federal, integrantes do sistema prisional e da Força Nacional de Segurança Pública, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente consanguíneo até o terceiro grau, em razão dessa condição; b) membro do Poder Judiciário, do Ministério Público, da Defensoria Pública ou da Advocacia Pública, de que tratam os arts. 131 e 132 da Constituição Federal, ou oficial de justiça, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente, inclusive por afinidade, até o terceiro grau, em razão dessa condição; VIII - com emprego de arma de fogo de uso restrito ou proibido; IX - contra menor de 14 (quatorze) anos; X - nas dependências de instituição de ensino: Pena - reclusão, de doze a trinta anos.\n\n§ 2º-A (Revogado).\n\n§ 2º-B. A pena do homicídio contra menor de 14 (quatorze) anos é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que implique o aumento de sua vulnerabilidade; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tiver autoridade sobre ela. III - 2/3 (dois terços) se o crime for praticado em instituição de educação básica pública ou privada.\n\n§ 2º-C. A pena do homicídio cometido nas dependências de instituição de ensino é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que acarrete condição limitante ou de vulnerabilidade física ou mental; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tem autoridade sobre ela ou, ainda, se é professor ou funcionário da instituição de ensino.\n\n§ 2º-D. Se o homicídio doloso é cometido por integrante de organização criminosa ultraviolenta, grupo paramilitar ou milícia privada, no contexto da atuação ou para a consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil. Pena - reclusão, de 20 (vinte) a 40 (quarenta anos).\n\n§ 3º Se o homicídio é culposo: Pena - detenção, de um a três anos.\n\n§ 4º No homicídio culposo, a pena é aumentada de 1/3 (um terço), se o crime resulta de inobservância de regra técnica de profissão, arte ou ofício, ou se o agente deixa de prestar imediato socorro à vítima, não procura diminuir as conseqüências do seu ato, ou foge para evitar prisão em flagrante. Sendo doloso, o homicídio, a pena é aumentada de 1/3 (um terço) se o crime é praticado contra pessoa menor de 14 (quatorze) ou maior de 60 (sessenta) anos.\n\n§ 5º - Na hipótese de homicídio culposo, o juiz poderá deixar de aplicar a pena, se as conseqüências da infração atingirem o próprio agente de forma tão grave que a sanção penal se torne desnecessária.\n\n§ 6º A pena é aumentada de 1/3 (um terço) até a metade se o crime for praticado por milícia privada, sob o pretexto de prestação de serviço de segurança, ou por grupo de extermínio.\n\n§ 7º (Revogado).",
-    "a": "Matar alguem"
-  },
-  {
-    "q": "Art. 121. Matar alguem: Pena - reclusão, de seis a vinte anos.\n\n§ 1º Se o agente comete o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de __________ a um terço.\n\n§ 2º Se o homicídio é cometido: I - mediante paga ou promessa de recompensa, ou por outro motivo torpe; II - por motivo futil; III - com emprego de veneno, fogo, explosivo, asfixia, tortura ou outro meio insidioso ou cruel, ou de que possa resultar perigo comum; IV - à traição, de emboscada, ou mediante dissimulação ou outro recurso que dificulte ou torne impossivel a defesa do ofendido; V - para assegurar a execução, a ocultação, a impunidade ou vantagem de outro crime: Pena - reclusão, de doze a trinta anos.\n\nVI - (Revogado); VII – contra: a) autoridade ou agente descrito nos arts. 142 e 144 da Constituição Federal, integrantes do sistema prisional e da Força Nacional de Segurança Pública, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente consanguíneo até o terceiro grau, em razão dessa condição; b) membro do Poder Judiciário, do Ministério Público, da Defensoria Pública ou da Advocacia Pública, de que tratam os arts. 131 e 132 da Constituição Federal, ou oficial de justiça, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente, inclusive por afinidade, até o terceiro grau, em razão dessa condição; VIII - com emprego de arma de fogo de uso restrito ou proibido; IX - contra menor de 14 (quatorze) anos; X - nas dependências de instituição de ensino: Pena - reclusão, de doze a trinta anos.\n\n§ 2º-A (Revogado).\n\n§ 2º-B. A pena do homicídio contra menor de 14 (quatorze) anos é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que implique o aumento de sua vulnerabilidade; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tiver autoridade sobre ela. III - 2/3 (dois terços) se o crime for praticado em instituição de educação básica pública ou privada.\n\n§ 2º-C. A pena do homicídio cometido nas dependências de instituição de ensino é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que acarrete condição limitante ou de vulnerabilidade física ou mental; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tem autoridade sobre ela ou, ainda, se é professor ou funcionário da instituição de ensino.\n\n§ 2º-D. Se o homicídio doloso é cometido por integrante de organização criminosa ultraviolenta, grupo paramilitar ou milícia privada, no contexto da atuação ou para a consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil. Pena - reclusão, de 20 (vinte) a 40 (quarenta anos).\n\n§ 3º Se o homicídio é culposo: Pena - detenção, de um a três anos.\n\n§ 4º No homicídio culposo, a pena é aumentada de 1/3 (um terço), se o crime resulta de inobservância de regra técnica de profissão, arte ou ofício, ou se o agente deixa de prestar imediato socorro à vítima, não procura diminuir as conseqüências do seu ato, ou foge para evitar prisão em flagrante. Sendo doloso, o homicídio, a pena é aumentada de 1/3 (um terço) se o crime é praticado contra pessoa menor de 14 (quatorze) ou maior de 60 (sessenta) anos.\n\n§ 5º - Na hipótese de homicídio culposo, o juiz poderá deixar de aplicar a pena, se as conseqüências da infração atingirem o próprio agente de forma tão grave que a sanção penal se torne desnecessária.\n\n§ 6º A pena é aumentada de 1/3 (um terço) até a metade se o crime for praticado por milícia privada, sob o pretexto de prestação de serviço de segurança, ou por grupo de extermínio.\n\n§ 7º (Revogado).",
-    "a": "um sexto"
-  },
-  {
-    "q": "Art. 129. __________ a integridade corporal ou a saúde de outrem: Pena - detenção, de três meses a um ano.\n\n§ 1º Se resulta: I - Incapacidade para as ocupações habituais, por mais de trinta dias; II - perigo de vida; III - debilidade permanente de membro, sentido ou função; IV - aceleração de parto: Pena - reclusão, de um a cinco anos.\n\n§ 2º Se resulta: I - Incapacidade permanente para o trabalho; II - enfermidade incuravel; III - perda ou inutilização do membro, sentido ou função; IV - deformidade permanente; V - aborto: Pena - reclusão, de dois a oito anos.\n\n§ 3º Se resulta morte e as circunstâncias evidenciam que o agente não quís o resultado, nem assumiu o risco de produzí-lo: Pena - reclusão, de quatro a doze anos.\n\n§ 3º-A. No crime previsto no § 3º deste artigo, se cometido no contexto da atuação ou para a consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil: Pena - reclusão, de 20 (vinte) a 40 (quarenta) anos.\n\n§ 4º Se o agente comete o crime impelido por motivo de relevante valor social ou moral ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de um sexto a um terço.\n\n§ 5º O juiz, não sendo graves as lesões, pode ainda substituir a pena de detenção pela de multa, de duzentos mil réis a dois contos de réis: I - se ocorre qualquer das hipóteses do parágrafo anterior; II - se as lesões são recíprocas.\n\n§ 6º Se a lesão é culposa: Pena - detenção, de dois meses a um ano.\n\n§ 7º Aumenta-se a pena de 1/3 (um terço) se ocorrer qualquer das hipóteses dos §§ 4º e 6º do art. 121 deste Código.\n\n§ 8º - Aplica-se à lesão culposa o disposto no § 5º do art. 121.\n\n§ 8º-A. Com exceção do disposto no § 3º-A deste artigo, aumenta-se a pena em 2/3 (dois terços) se a lesão é praticada por integrante de organização criminosa ultraviolenta, grupo paramilitar ou milícia privada, no contexto da atuação ou para a consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil.\n\n§ 9º Se a lesão for praticada contra ascendente, descendente, irmão, cônjuge ou companheiro, pessoa com relação de trabalho doméstico ou com quem conviva ou tenha convivido, ou, ainda, prevalecendo-se o agente das relações domésticas, de trabalho doméstico, de coabitação ou de hospitalidade: Pena – reclusão, de 2 (dois) a 5 (cinco) anos.\n\n§ 10. Nos casos previstos nos §§ 1º a 3º deste artigo, se as circunstâncias são as indicadas no § 9º deste artigo, aumenta-se a pena em 1/3 (um terço).\n\n§ 11. Na hipótese do § 9º deste artigo, a pena será aumentada de um terço se o crime for cometido contra pessoa portadora de deficiência.\n\n§ 12. Aumenta-se a pena de: I - 1/3 (um terço) a 2/3 (dois terços) se a lesão dolosa for praticada: a) contra autoridade ou agente descrito nos arts. 142 e 144 da Constituição Federal ou integrantes do\n\nsistema prisional ou da Força Nacional de Segurança Pública, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente consanguíneo até terceiro grau, em razão dessa condição; b) contra membro do Poder Judiciário, do Ministério Público, da Defensoria Pública ou da Advocacia Pública, de que tratam os arts. 131 e 132 da Constituição Federal, ou oficial de justiça, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente, inclusive por afinidade, até o terceiro grau, em razão dessa condição; ou c) nas dependências de instituição de ensino; II - 2/3 (dois terços) ao dobro se a lesão dolosa for praticada nas dependências de instituição de ensino e: a) a vítima for pessoa com deficiência ou com doença que acarrete condição limitante ou de vulnerabilidade física ou mental; ou b) o autor for ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tiver autoridade sobre ela ou, ainda, for professor ou funcionário da instituição de ensino.\n\n§ 13. Se a lesão é praticada contra a mulher, por razões da condição do sexo feminino, nos termos do § 1º do art. 121-A deste Código: Pena – reclusão, de 2 (dois) a 5 (cinco) anos.",
-    "a": "Ofender"
-  },
-  {
-    "q": "Art. 150 - Entrar ou permanecer, clandestina ou __________, ou contra a vontade expressa ou tácita de quem de direito, em casa alheia ou em suas dependências: Pena - detenção, de um a três meses, ou multa.\n\n§ 1º - Se o crime é cometido durante a noite, ou em lugar ermo, ou com o emprego de violência ou de arma, ou por duas ou mais pessoas: Pena - detenção, de seis meses a dois anos, além da pena correspondente à violência.\n\n§ 2º - (Revogado).\n\n§ 3º - Não constitui crime a entrada ou permanência em casa alheia ou em suas dependências: I - durante o dia, com observância das formalidades legais, para efetuar prisão ou outra diligência; II - a qualquer hora do dia ou da noite, quando algum crime está sendo ali praticado ou na iminência de o ser.\n\n§ 4º - A expressão \"casa\" compreende: I - qualquer compartimento habitado; II - aposento ocupado de habitação coletiva; III - compartimento não aberto ao público, onde alguém exerce profissão ou atividade.\n\n§ 5º - Não se compreendem na expressão \"casa\": I - hospedaria, estalagem ou qualquer outra habitação coletiva, enquanto aberta, salvo a restrição do n.º II do parágrafo anterior; II - taverna, casa de jogo e outras do mesmo gênero.",
-    "a": "astuciosamente"
-  },
-  {
-    "q": "Art. 154 - Revelar alguém, sem __________, segredo, de que tem ciência em razão de função, ministério, ofício ou profissão, e cuja revelação possa produzir dano a outrem: Pena - detenção, de três meses a um ano, ou multa de um conto a dez contos de réis.\n\nParágrafo único - Somente se procede mediante representação.",
-    "a": "justa causa"
-  },
-  {
-    "q": "Art. 294 - Fabricar, adquirir, fornecer, possuir ou guardar objeto especialmente destinado à __________ de qualquer dos papéis referidos no artigo anterior: Pena - reclusão, de um a três anos, e multa.",
-    "a": "falsificação"
-  },
-  {
-    "q": "Art. 295 - Se o agente é funcionário público, e comete o crime prevalecendo-se do cargo, aumenta-se a pena de __________.",
-    "a": "sexta parte"
-  },
-  {
-    "q": "Art. 297 - Falsificar, no todo ou em parte, __________, ou alterar documento público verdadeiro: Pena - reclusão, de dois a seis anos, e multa.\n\n§ 1º - Se o agente é funcionário público, e comete o crime prevalecendo-se do cargo, aumenta-se a pena de sexta parte.\n\n§ 2º - Para os efeitos penais, equiparam-se a documento público o emanado de entidade paraestatal, o título ao portador ou transmissível por endosso, as ações de sociedade comercial, os livros mercantis e o testamento particular.\n\n§ 3º Nas mesmas penas incorre quem insere ou faz inserir: I – na folha de pagamento ou em documento de informações que seja destinado a fazer prova perante a previdência social, pessoa que não possua a qualidade de segurado obrigatório; II – na Carteira de Trabalho e Previdência Social do empregado ou em documento que deva produzir efeito perante a previdência social, declaração falsa ou diversa da que deveria ter sido escrita; III – em documento contábil ou em qualquer outro documento relacionado com as obrigações da empresa perante a previdência social, declaração falsa ou diversa da que deveria ter constado.\n\n§ 4º Nas mesmas penas incorre quem omite, nos documentos mencionados no § 3º, nome do segurado e seus dados pessoais, a remuneração, a vigência do contrato de trabalho ou de prestação de serviços.",
-    "a": "documento público"
-  },
-  {
-    "q": "Art. 298 - Falsificar, no todo ou em parte, documento particular ou alterar documento particular __________: Pena - reclusão, de um a cinco anos, e multa.\n\nParágrafo único. Para fins do disposto no caput, equipara-se a documento particular o cartão de crédito ou débito.",
-    "a": "verdadeiro"
-  },
-  {
-    "q": "Art. 304 - Fazer uso de qualquer dos papéis falsificados ou alterados, a que se referem os arts. 297 a 302: Pena - a __________ à falsificação ou à alteração.",
-    "a": "cominada"
-  },
-  {
-    "q": "Art. 307 - Atribuir-se ou atribuir a terceiro falsa identidade para obter __________, em proveito próprio ou alheio, ou para causar dano a outrem: Pena - detenção, de três meses a um ano, ou multa, se o fato não constitui elemento de crime mais grave.",
-    "a": "vantagem"
-  },
-  {
-    "q": "Art. 312 - Apropriar-se o funcionário público de dinheiro, valor ou qualquer outro bem móvel, público ou particular, de que tem a posse em razão do __________, ou desviá-lo, em proveito próprio ou alheio: Pena - reclusão, de dois a doze anos, e multa.\n\n§ 1º - Aplica-se a mesma pena, se o funcionário público, embora não tendo a posse do dinheiro, valor ou bem, o subtrai, ou concorre para que seja subtraído, em proveito próprio ou alheio, valendo-se de facilidade que lhe proporciona a qualidade de funcionário.\n\n§ 2º - Se o funcionário concorre culposamente para o crime de outrem: Pena - detenção, de três meses a um ano.\n\n§ 3º - No caso do parágrafo anterior, a reparação do dano, se precede à sentença irrecorrível, extingue a punibilidade; se lhe é posterior, reduz de metade a pena imposta.",
-    "a": "cargo"
-  },
-  {
-    "q": "Art. 359 - Exercer função, atividade, direito, autoridade ou múnus, de que foi suspenso ou __________ por decisão judicial: Pena - detenção, de três meses a dois anos, ou multa.",
-    "a": "privado"
-  },
-  {
-    "q": "Art. 5º - Aplica-se a lei brasileira, sem prejuízo de convenções, tratados e regras de direito internacional, ao crime cometido no território nacional.\n\n§ 1º - Para os efeitos penais, consideram-se como __________ do território nacional as embarcações e aeronaves brasileiras, de natureza pública ou a serviço do governo brasileiro onde quer que se encontrem, bem como as aeronaves e as embarcações brasileiras, mercantes ou de propriedade privada, que se achem, respectivamente, no espaço aéreo correspondente ou em alto-mar.\n\n§ 2º - É também aplicável a lei brasileira aos crimes praticados a bordo de aeronaves ou embarcações estrangeiras de propriedade privada, achando-se aquelas em pouso no território nacional ou em vôo no espaço aéreo correspondente, e estas em porto ou mar territorial do Brasil.",
-    "a": "extensão"
-  },
-  {
-    "q": "Art. 7º - Ficam sujeitos à lei brasileira, embora cometidos no __________:\n\nI - os crimes: a) contra a vida ou a liberdade do Presidente da República; b) contra o patrimônio ou a fé pública da União, do Distrito Federal, de Estado, de Território, de Município, de empresa pública, sociedade de economia mista, autarquia ou fundação instituída pelo Poder Público; c) contra a administração pública, por quem está a seu serviço; d) de genocídio, quando o agente for brasileiro ou domiciliado no Brasil;\n\nII - os crimes: a) que, por tratado ou convenção, o Brasil se obrigou a reprimir; b) praticados por brasileiro; c) praticados em aeronaves ou embarcações brasileiras, mercantes ou de propriedade privada, quando em território estrangeiro e aí não sejam julgados.\n\n§ 1º - Nos casos do inciso I, o agente é punido segundo a lei brasileira, ainda que absolvido ou condenado no estrangeiro.\n\n§ 2º - Nos casos do inciso II, a aplicação da lei brasileira depende do concurso das seguintes condições: a) entrar o agente no território nacional; b) ser o fato punível também no país em que foi praticado; c) estar o crime incluído entre aqueles pelos quais a lei brasileira autoriza a extradição; d) não ter sido o agente absolvido no estrangeiro ou não ter aí cumprido a pena; e) não ter sido o agente perdoado no estrangeiro ou, por outro motivo, não estar extinta a punibilidade, segundo a lei mais favorável.\n\n§ 3º - A lei brasileira aplica-se também ao crime cometido por estrangeiro contra brasileiro fora do Brasil, se, reunidas as condições previstas no parágrafo anterior: a) não foi pedida ou foi negada a extradição; b) houve requisição do Ministro da Justiça.",
-    "a": "estrangeiro"
-  },
-  {
-    "q": "Art. 9º - A sentença estrangeira, quando a aplicação da lei brasileira produz na espécie as mesmas consequências, pode ser __________ no Brasil para: I - obrigar o condenado à reparação do dano, a restituições e a outros efeitos civis; II - sujeitá-lo a medida de segurança.\n\nParágrafo único - A homologação depende: a) para os efeitos previstos no inciso I, de pedido da parte interessada; b) para os outros efeitos, da existência de tratado de extradição com o país de cuja autoridade judiciária emanou a sentença, ou, na falta de tratado, de requisição do Ministro da Justiça.",
-    "a": "homologada"
-  },
-  {
-    "q": "Art. 11 - Desprezam-se, nas penas privativas de liberdade e nas restritivas de direitos, as __________ de dia, e, na pena de multa, as frações de cruzeiro.",
-    "a": "frações"
-  },
-  {
-    "q": "Art. 100 - A ação penal é pública, salvo quando a lei expressamente a declara privativa do ofendido.\n\n§ 1º - A ação pública é promovida pelo __________, dependendo, quando a lei o exige, de representação do ofendido ou de requisição do Ministro da Justiça.\n\n§ 2º - A ação de iniciativa privada é promovida mediante queixa do ofendido ou de quem tenha qualidade para representá-lo.\n\n§ 3º - A ação de iniciativa privada pode intentar-se nos crimes de ação pública, se o Ministério Público não oferece denúncia no prazo legal.\n\n§ 4º - No caso de morte do ofendido ou de ter sido declarado ausente por decisão judicial, o direito de oferecer queixa ou de prosseguir na ação passa ao cônjuge, ascendente, descendente ou irmão.",
-    "a": "Ministério Público"
-  },
-  {
-    "q": "Art. 100 - A ação penal é pública, salvo quando a lei expressamente a declara privativa do ofendido.\n\n§ 1º - A ação pública é promovida pelo Ministério Público, dependendo, quando a lei o exige, de representação do ofendido ou de requisição do Ministro da Justiça.\n\n§ 2º - A ação de iniciativa privada é promovida mediante __________ do ofendido ou de quem tenha qualidade para representá-lo.\n\n§ 3º - A ação de iniciativa privada pode intentar-se nos crimes de ação pública, se o Ministério Público não oferece denúncia no prazo legal.\n\n§ 4º - No caso de morte do ofendido ou de ter sido declarado ausente por decisão judicial, o direito de oferecer queixa ou de prosseguir na ação passa ao cônjuge, ascendente, descendente ou irmão.",
-    "a": "queixa"
-  },
-  {
-    "q": "Art. 106 - O perdão, no processo ou fora dele, expresso ou tácito: I - se concedido a qualquer dos querelados, a todos aproveita; II - se concedido por um dos ofendidos, não prejudica o direito dos outros; III - se o querelado o __________, não produz efeito.\n\n§ 1º - Perdão tácito é o que resulta da prática de ato incompatível com a vontade de prosseguir na ação.\n\n§ 2º - Não é admissível o perdão depois que passa em julgado a sentença condenatória.",
-    "a": "recusa"
-  },
-  {
-    "q": "Art. 107 - Extingue-se a punibilidade: I - pela morte do agente; II - pela anistia, graça ou indulto; III - pela retroatividade de lei que não mais considera o fato como criminoso; IV - pela prescrição, decadência ou __________; V - pela renúncia do direito de queixa ou pelo perdão aceito, nos crimes de ação privada; VI - pela retratação do agente, nos casos em que a lei a admite; VII - (Revogado); VIII - (Revogado); IX - pelo perdão judicial, nos casos previstos em lei.",
-    "a": "perempção"
-  },
-  {
-    "q": "Art. 109. A prescrição, antes de transitar em julgado a sentença final, salvo o disposto no § 1º do art. 110 deste Código, regula-se pelo __________ da pena privativa de liberdade cominada ao crime, verificando-se: I - em vinte anos, se o máximo da pena é superior a doze; II - em dezesseis anos, se o máximo da pena é superior a oito anos e não excede a doze; III - em doze anos, se o máximo da pena é superior a quatro anos e não excede a oito; IV - em oito anos, se o máximo da pena é superior a dois anos e não excede a quatro; V - em quatro anos, se o máximo da pena é igual a um ano ou, sendo superior, não excede a dois; VI - em 3 (três) anos, se o máximo da pena é inferior a 1 (um) ano.\n\nParágrafo único - Aplicam-se às penas restritivas de direito os mesmos prazos previstos para as privativas de liberdade.",
-    "a": "máximo"
-  },
-  {
-    "q": "Art. 110 - A prescrição depois de transitar em julgado a sentença condenatória regula-se pela pena __________ e verifica-se nos prazos fixados no artigo anterior, os quais se aumentam de um terço, se o condenado é reincidente.\n\n§ 1º A prescrição, depois da sentença condenatória com trânsito em julgado para a acusação ou depois de improvido seu recurso, regula-se pela pena aplicada, não podendo, em nenhuma hipótese, ter por termo inicial data anterior à da denúncia ou queixa.\n\n§ 2º (Revogado).",
-    "a": "aplicada"
-  },
-  {
-    "q": "Art. 111 - A prescrição, antes de transitar em julgado a sentença final, começa a correr: I - do dia em que o crime se consumou; II - no caso de tentativa, do dia em que cessou a atividade criminosa; III - nos crimes permanentes, do dia em que cessou a __________; IV - nos de bigamia e nos de falsificação ou alteração de assentamento do registro civil, da data em que o fato se tornou conhecido. V - nos crimes contra a dignidade sexual ou que envolvam violência contra a criança e o adolescente, previstos neste Código ou em legislação especial, da data em que a vítima completar 18 (dezoito) anos, salvo se a esse tempo já houver sido proposta a ação penal.",
-    "a": "permanência"
-  },
-  {
-    "q": "Art. 114 - A prescrição da pena de multa ocorrerá: I - em 2 (dois) anos, quando a multa for a __________ cominada ou aplicada; II - no mesmo prazo estabelecido para prescrição da pena privativa de liberdade, quando a multa for alternativa ou cumulativamente cominada ou cumulativamente aplicada.",
-    "a": "única"
-  },
-  {
-    "q": "Art. 117 - O curso da prescrição interrompe-se: I - pelo recebimento da __________ ou da queixa; II - pela pronúncia; III - pela decisão confirmatória da pronúncia; IV - pela publicação da sentença ou acórdão condenatórios recorríveis; V - pelo início ou continuação do cumprimento da pena; VI - pela reincidência.\n\n§ 1º - Excetuados os casos dos incisos V e VI deste artigo, a interrupção da prescrição produz efeitos relativamente a todos os autores do crime. Nos crimes conexos, que sejam objeto do mesmo processo, estende-se aos demais a interrupção relativa a qualquer deles.\n\n§ 2º - Interrompida a prescrição, salvo a hipótese do inciso V deste artigo, todo o prazo começa a correr, novamente, do dia da interrupção.",
-    "a": "denúncia"
-  },
-  {
-    "q": "Art. 121. Matar alguem: Pena - reclusão, de seis a vinte anos.\n\n§ 1º Se o agente comete o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de um sexto a um terço.\n\n§ 2º Se o homicídio é cometido: I - mediante paga ou promessa de recompensa, ou por outro motivo torpe; II - por motivo futil; III - com emprego de veneno, fogo, explosivo, asfixia, tortura ou outro meio insidioso ou cruel, ou de que possa resultar perigo comum; IV - à traição, de emboscada, ou mediante dissimulação ou outro recurso que dificulte ou torne impossivel a defesa do ofendido; V - para assegurar a execução, a ocultação, a impunidade ou vantagem de outro crime: Pena - reclusão, de __________.\n\nVI - (Revogado); VII – contra: a) autoridade ou agente descrito nos arts. 142 e 144 da Constituição Federal, integrantes do sistema prisional e da Força Nacional de Segurança Pública, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente consanguíneo até o terceiro grau, em razão dessa condição; b) membro do Poder Judiciário, do Ministério Público, da Defensoria Pública ou da Advocacia Pública, de que tratam os arts. 131 e 132 da Constituição Federal, ou oficial de justiça, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente, inclusive por afinidade, até o terceiro grau, em razão dessa condição; VIII - com emprego de arma de fogo de uso restrito ou proibido; IX - contra menor de 14 (quatorze) anos; X - nas dependências de instituição de ensino: Pena - reclusão, de doze a trinta anos.\n\n§ 2º-A (Revogado).\n\n§ 2º-B. A pena do homicídio contra menor de 14 (quatorze) anos é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que implique o aumento de sua vulnerabilidade; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tiver autoridade sobre ela. III - 2/3 (dois terços) se o crime for praticado em instituição de educação básica pública ou privada.\n\n§ 2º-C. A pena do homicídio cometido nas dependências de instituição de ensino é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que acarrete condição limitante ou de vulnerabilidade física ou mental; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tem autoridade sobre ela ou, ainda, se é professor ou funcionário da instituição de ensino.\n\n§ 2º-D. Se o homicídio doloso é cometido por integrante de organização criminosa ultraviolenta, grupo paramilitar ou milícia privada, no contexto da atuação ou para a consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil. Pena - reclusão, de 20 (vinte) a 40 (quarenta anos).\n\n§ 3º Se o homicídio é culposo: Pena - detenção, de um a três anos.\n\n§ 4º No homicídio culposo, a pena é aumentada de 1/3 (um terço), se o crime resulta de inobservância de regra técnica de profissão, arte ou ofício, ou se o agente deixa de prestar imediato socorro à vítima, não procura diminuir as conseqüências do seu ato, ou foge para evitar prisão em flagrante. Sendo doloso, o homicídio, a pena é aumentada de 1/3 (um terço) se o crime é praticado contra pessoa menor de 14 (quatorze) ou maior de 60 (sessenta) anos.\n\n§ 5º - Na hipótese de homicídio culposo, o juiz poderá deixar de aplicar a pena, se as conseqüências da infração atingirem o próprio agente de forma tão grave que a sanção penal se torne desnecessária.\n\n§ 6º A pena é aumentada de 1/3 (um terço) até a metade se o crime for praticado por milícia privada, sob o pretexto de prestação de serviço de segurança, ou por grupo de extermínio.\n\n§ 7º (Revogado).",
-    "a": "doze a trinta anos"
-  },
-  {
-    "q": "Art. 121. Matar alguem: Pena - reclusão, de seis a vinte anos.\n\n§ 1º Se o agente comete o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de um sexto a um terço.\n\n§ 2º Se o homicídio é cometido: I - mediante paga ou promessa de recompensa, ou por outro motivo torpe; II - por motivo futil; III - com emprego de veneno, fogo, explosivo, asfixia, tortura ou outro meio insidioso ou cruel, ou de que possa resultar perigo comum; IV - à traição, de emboscada, ou mediante dissimulação ou outro recurso que dificulte ou torne impossivel a defesa do ofendido; V - para assegurar a execução, a ocultação, a impunidade ou vantagem de outro crime: Pena - reclusão, de doze a trinta anos.\n\nVI - (Revogado); VII – contra: a) autoridade ou agente descrito nos arts. 142 e 144 da Constituição Federal, integrantes do sistema prisional e da Força Nacional de Segurança Pública, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente consanguíneo até o terceiro grau, em razão dessa condição; b) membro do Poder Judiciário, do Ministério Público, da Defensoria Pública ou da Advocacia Pública, de que tratam os arts. 131 e 132 da Constituição Federal, ou oficial de justiça, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente, inclusive por afinidade, até o terceiro grau, em razão dessa condição; VIII - com emprego de arma de fogo de uso restrito ou proibido; IX - contra menor de 14 (quatorze) anos; X - nas dependências de instituição de ensino: Pena - reclusão, de doze a trinta anos.\n\n§ 2º-A (Revogado).\n\n§ 2º-B. A pena do homicídio contra menor de 14 (quatorze) anos é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que implique o aumento de sua vulnerabilidade; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tiver autoridade sobre ela. III - 2/3 (dois terços) se o crime for praticado em instituição de educação básica pública ou privada.\n\n§ 2º-C. A pena do homicídio cometido nas dependências de instituição de ensino é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que acarrete condição limitante ou de vulnerabilidade física ou mental; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tem autoridade sobre ela ou, ainda, se é professor ou funcionário da instituição de ensino.\n\n§ 2º-D. Se o homicídio doloso é cometido por integrante de organização criminosa ultraviolenta, grupo paramilitar ou milícia privada, no contexto da atuação ou para a consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil. Pena - reclusão, de 20 (vinte) a 40 (quarenta anos).\n\n§ 3º Se o homicídio é culposo: Pena - __________, de um a três anos.\n\n§ 4º No homicídio culposo, a pena é aumentada de 1/3 (um terço), se o crime resulta de inobservância de regra técnica de profissão, arte ou ofício, ou se o agente deixa de prestar imediato socorro à vítima, não procura diminuir as conseqüências do seu ato, ou foge para evitar prisão em flagrante. Sendo doloso, o homicídio, a pena é aumentada de 1/3 (um terço) se o crime é praticado contra pessoa menor de 14 (quatorze) ou maior de 60 (sessenta) anos.\n\n§ 5º - Na hipótese de homicídio culposo, o juiz poderá deixar de aplicar a pena, se as conseqüências da infração atingirem o próprio agente de forma tão grave que a sanção penal se torne desnecessária.\n\n§ 6º A pena é aumentada de 1/3 (um terço) até a metade se o crime for praticado por milícia privada, sob o pretexto de prestação de serviço de segurança, ou por grupo de extermínio.\n\n§ 7º (Revogado).",
-    "a": "detenção"
-  },
-  {
-    "q": "Art. 121. Matar alguem: Pena - reclusão, de seis a vinte anos.\n\n§ 1º Se o agente comete o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de um sexto a um terço.\n\n§ 2º Se o homicídio é cometido: I - mediante paga ou promessa de recompensa, ou por outro motivo torpe; II - por motivo futil; III - com emprego de veneno, fogo, explosivo, asfixia, tortura ou outro meio insidioso ou cruel, ou de que possa resultar perigo comum; IV - à traição, de emboscada, ou mediante dissimulação ou outro recurso que dificulte ou torne impossivel a defesa do ofendido; V - para assegurar a execução, a ocultação, a impunidade ou vantagem de outro crime: Pena - reclusão, de doze a trinta anos.\n\nVI - (Revogado); VII – contra: a) autoridade ou agente descrito nos arts. 142 e 144 da Constituição Federal, integrantes do sistema prisional e da Força Nacional de Segurança Pública, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente consanguíneo até o terceiro grau, em razão dessa condição; b) membro do Poder Judiciário, do Ministério Público, da Defensoria Pública ou da Advocacia Pública, de que tratam os arts. 131 e 132 da Constituição Federal, ou oficial de justiça, no exercício da função ou em decorrência dela, ou contra seu cônjuge, companheiro ou parente, inclusive por afinidade, até o terceiro grau, em razão dessa condição; VIII - com emprego de arma de fogo de uso restrito ou proibido; IX - contra menor de 14 (quatorze) anos; X - nas dependências de instituição de ensino: Pena - reclusão, de doze a trinta anos.\n\n§ 2º-A (Revogado).\n\n§ 2º-B. A pena do homicídio contra menor de 14 (quatorze) anos é aumentada de: I - __________ até a metade se a vítima é pessoa com deficiência ou com doença que implique o aumento de sua vulnerabilidade; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tiver autoridade sobre ela. III - 2/3 (dois terços) se o crime for praticado em instituição de educação básica pública ou privada.\n\n§ 2º-C. A pena do homicídio cometido nas dependências de instituição de ensino é aumentada de: I - 1/3 (um terço) até a metade se a vítima é pessoa com deficiência ou com doença que acarrete condição limitante ou de vulnerabilidade física ou mental; II - 2/3 (dois terços) se o autor é ascendente, padrasto ou madrasta, tio, irmão, cônjuge, companheiro, tutor, curador, preceptor ou empregador da vítima ou por qualquer outro título tem autoridade sobre ela ou, ainda, se é professor ou funcionário da instituição de ensino.\n\n§ 2º-D. Se o homicídio doloso é cometido por integrante de organização criminosa ultraviolenta, grupo paramilitar ou milícia privada, no contexto da atuação ou para a consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil. Pena - reclusão, de 20 (vinte) a 40 (quarenta anos).\n\n§ 3º Se o homicídio é culposo: Pena - detenção, de um a três anos.\n\n§ 4º No homicídio culposo, a pena é aumentada de 1/3 (um terço), se o crime resulta de inobservância de regra técnica de profissão, arte ou ofício, ou se o agente deixa de prestar imediato socorro à vítima, não procura diminuir as conseqüências do seu ato, ou foge para evitar prisão em flagrante. Sendo doloso, o homicídio, a pena é aumentada de 1/3 (um terço) se o crime é praticado contra pessoa menor de 14 (quatorze) ou maior de 60 (sessenta) anos.\n\n§ 5º - Na hipótese de homicídio culposo, o juiz poderá deixar de aplicar a pena, se as conseqüências da infração atingirem o próprio agente de forma tão grave que a sanção penal se torne desnecessária.\n\n§ 6º A pena é aumentada de 1/3 (um terço) até a metade se o crime for praticado por milícia privada, sob o pretexto de prestação de serviço de segurança, ou por grupo de extermínio.\n\n§ 7º (Revogado).",
-    "a": "1/3 (um terço)"
-  },
-  {
-    "q": "Art. 297 - Falsificar, no todo ou em parte, documento público, ou alterar documento público verdadeiro: Pena - reclusão, de dois a seis anos, e multa.\n\n§ 1º - Se o agente é funcionário público, e comete o crime prevalecendo-se do cargo, aumenta-se a pena de sexta parte.\n\n§ 2º - Para os efeitos penais, equiparam-se a documento público o emanado de entidade paraestatal, o título ao portador ou transmissível por endosso, as ações de sociedade comercial, os livros mercantis e o __________.\n\n§ 3º Nas mesmas penas incorre quem insere ou faz inserir: I – na folha de pagamento ou em documento de informações que seja destinado a fazer prova perante a previdência social, pessoa que não possua a qualidade de segurado obrigatório; II – na Carteira de Trabalho e Previdência Social do empregado ou em documento que deva produzir efeito perante a previdência social, declaração falsa ou diversa da que deveria ter sido escrita; III – em documento contábil ou em qualquer outro documento relacionado com as obrigações da empresa perante a previdência social, declaração falsa ou diversa da que deveria ter constado.\n\n§ 4º Nas mesmas penas incorre quem omite, nos documentos mencionados no § 3º, nome do segurado e seus dados pessoais, a remuneração, a vigência do contrato de trabalho ou de prestação de serviços.",
-    "a": "testamento particular"
-  },
-  {
-    "q": "Art. 299 - Omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir ou fazer inserir declaração __________ ou diversa da que devia ser escrita, com o fim de prejudicar direito, criar obrigação ou alterar a verdade sobre fato juridicamente relevante: Pena - reclusão, de um a cinco anos, e multa, se o documento é público, e reclusão de um a três anos, e multa, de quinhentos mil réis a cinco contos de réis, se o documento é particular.\n\nParágrafo único - Se o agente é funcionário público, e comete o crime prevalecendo-se do cargo, ou se a falsificação ou alteração é de assentamento de registro civil, aumenta-se a pena de sexta parte.",
-    "a": "falsa"
-  },
-  {
-    "q": "Art. 311-A. Utilizar ou divulgar, indevidamente, com o fim de beneficiar a si ou a outrem, ou de comprometer a credibilidade do certame, conteúdo sigiloso de: I - __________; II - avaliação ou exame públicos; III - processo seletivo para ingresso no ensino superior; ou IV - exame ou processo seletivo previstos em lei: Pena - reclusão, de 1 (um) a 4 (quatro) anos, e multa.\n\n§ 1º Nas mesmas penas incorre quem permite ou facilita, por qualquer meio, o acesso de pessoas não autorizadas às informações mencionadas no caput.\n\n§ 2º Se da ação ou omissão resulta dano à administração pública: Pena - reclusão, de 2 (dois) a 6 (seis) anos, e multa.\n\n§ 3º Aumenta-se a pena de 1/3 (um terço) se o fato é cometido por funcionário público.",
-    "a": "concurso público"
-  },
-  {
-    "q": "Art. 312 - Apropriar-se o funcionário público de dinheiro, valor ou qualquer outro bem móvel, público ou particular, de que tem a posse em razão do cargo, ou desviá-lo, em proveito próprio ou alheio: Pena - reclusão, de dois a doze anos, e multa.\n\n§ 1º - Aplica-se a mesma pena, se o funcionário público, embora não tendo a posse do dinheiro, valor ou bem, o subtrai, ou concorre para que seja subtraído, em proveito próprio ou alheio, valendo-se de facilidade que lhe proporciona a qualidade de funcionário.\n\n§ 2º - Se o funcionário concorre culposamente para o crime de outrem: Pena - detenção, de três meses a um ano.\n\n§ 3º - No caso do parágrafo anterior, a reparação do dano, se precede à sentença irrecorrível, __________ a punibilidade; se lhe é posterior, reduz de metade a pena imposta.",
-    "a": "extingue"
-  },
-  {
-    "q": "Art. 316 - __________, para si ou para outrem, direta ou indiretamente, ainda que fora da função ou antes de assumi-la, mas em razão dela, vantagem indevida: Pena - reclusão, de 2 (dois) a 12 (doze) anos, e multa.\n\n§ 1º - Se o funcionário exige tributo ou contribuição social que sabe ou deveria saber indevido, ou, quando devido, emprega na cobrança meio vexatório ou gravoso, que a lei não autoriza: Pena - reclusão, de 3 (três) a 8 (oito) anos, e multa.\n\n§ 2º - Se o funcionário desvia, em proveito próprio ou de outrem, o que recebeu indevidamente para recolher aos cofres públicos: Pena - reclusão, de dois a doze anos, e multa.",
-    "a": "Exigir"
-  },
-  {
-    "q": "Art. 325 - __________ fato de que tem ciência em razão do cargo e que deva permanecer em segredo, ou facilitar-lhe a revelação: Pena - detenção, de seis meses a dois anos, ou multa, se o fato não constitui crime mais grave.\n\n§ 1º Nas mesmas penas deste artigo incorre quem: I – permite ou facilita, mediante atribuição, fornecimento e empréstimo de senha ou qualquer outra forma, o acesso de pessoas não autorizadas a sistemas de informações ou banco de dados da Administração Pública; II – se utiliza, indevidamente, do acesso restrito.\n\n§ 2º Se da ação ou omissão resulta dano à Administração Pública ou a outrem: Pena – reclusão, de 2 (dois) a 6 (seis) anos, e multa.",
-    "a": "Revelar"
-  }
-];
+const questionBanks = {
+  penal: [
+    {id:1,article:"Art. 1º",question:"Não há crime sem lei anterior que o ______. Não há pena sem prévia cominação legal.",answer:"defina"},
+    {id:2,article:"Art. 2º",question:"Ninguém pode ser punido por fato que lei posterior deixa de considerar ______, cessando em virtude dela a execução e os efeitos penais da sentença condenatória.",answer:"crime"},
+    {id:3,article:"Art. 3º",question:"A lei excepcional ou temporária, embora decorrido o período de sua duração ou cessadas as circunstâncias que a determinaram, aplica-se ao fato praticado durante sua ______.",answer:"vigência"},
+    {id:4,article:"Art. 4º",question:"Considera-se praticado o crime no momento da ______ ou omissão, ainda que outro seja o momento do resultado.",answer:"ação"},
+    {id:5,article:"Art. 5º",question:"Aplica-se a lei brasileira, sem prejuízo de convenções, tratados e regras de direito internacional, ao crime cometido no território ______.",answer:"nacional"},
+    {id:6,article:"Art. 6º",question:"Considera-se praticado o crime no lugar em que ocorreu a ação ou omissão, no todo ou em parte, bem como onde se produziu ou deveria produzir-se o ______.",answer:"resultado"},
+    {id:7,article:"Art. 8º",question:"A pena cumprida no estrangeiro atenua a pena imposta no Brasil, quando diversas, ou nela é ______, quando idênticas.",answer:"computada"},
+    {id:8,article:"Art. 10",question:"O dia do começo inclui-se no cômputo do prazo. Contam-se os dias, os meses e os anos pelo calendário ______.",answer:"comum"},
+    {id:9,article:"Art. 12",question:"As regras gerais deste Código aplicam-se aos fatos incriminados por lei especial, se esta não ______ de modo diverso.",answer:"dispuser"},
+    {id:10,article:"Art. 100",question:"A ação penal é pública, salvo quando a lei expressamente a declara ______.",answer:"privativa do ofendido"},
+    {id:11,article:"Art. 102",question:"A representação será irretratável depois de oferecida a ______.",answer:"denúncia"},
+    {id:12,article:"Art. 103",question:"Salvo disposição expressa em contrário, o ofendido decai do direito de queixa ou de representação se não o exerce dentro de ______ meses, contado do dia em que veio a saber quem é o autor do crime.",answer:"6 (seis)"},
+    {id:13,article:"Art. 104",question:"O direito de queixa não pode ser exercido quando renunciado ______ ou expressamente.",answer:"tacitamente"},
+    {id:14,article:"Art. 105",question:"O perdão do ofendido, nos crimes em que somente se procede mediante queixa, ______ a punibilidade quando aceito pelo querelado.",answer:"obsta"},
+    {id:15,article:"Art. 118",question:"As penas mais leves ______ as mais graves.",answer:"prescrevem"},
+    {id:16,article:"Art. 119",question:"No caso de concurso de crimes, a extinção da punibilidade incidirá sobre a pena de cada um, ______.",answer:"isoladamente"},
+    {id:17,article:"Art. 120",question:"A sentença que conceder perdão judicial não será considerada para efeitos de ______.",answer:"reincidência"},
+    {id:18,article:"Art. 121",question:"Art. 121 — ______ alguém: Pena — reclusão, de seis a vinte anos.",answer:"Matar"},
+    {id:19,article:"Art. 121, §1º",question:"Se o agente comete o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de um ______ a um terço.",answer:"sexto"},
+    {id:20,article:"Art. 129",question:"Art. 129 — ______ a integridade corporal ou a saúde de outrem: Pena — detenção, de três meses a um ano.",answer:"Ofender"},
+    {id:21,article:"Art. 150",question:"Art. 150 — Entrar ou permanecer, clandestina ou ______, ou contra a vontade expressa ou tácita de quem de direito, em casa alheia ou em suas dependências: Pena — detenção, de um a três meses, ou multa.",answer:"astuciosamente"},
+    {id:22,article:"Art. 154",question:"Art. 154 — Revelar alguém, sem ______, segredo, de que tem ciência em razão de função, ministério, ofício ou profissão, e cuja revelação possa produzir dano a outrem: Pena — detenção, de três meses a um ano, ou multa de um conto a dez contos de réis.",answer:"justa causa"},
+    {id:23,article:"Art. 294",question:"Art. 294 — Fabricar, adquirir, fornecer, possuir ou guardar objeto especialmente destinado à ______ de qualquer dos papéis falsificados ou alterados, de que trata o artigo anterior: Pena — detenção, de um a três anos, e multa.",answer:"falsificação"},
+    {id:24,article:"Art. 295",question:"Art. 295 — Se o agente é funcionário público, e comete o crime prevalecendo-se do cargo, aumenta-se a pena de ______.",answer:"sexta parte"},
+    {id:25,article:"Art. 297",question:"Art. 297 — Falsificar, no todo ou em parte, documento ______, ou alterar documento público verdadeiro: Pena — reclusão, de dois a seis anos, e multa.",answer:"público"},
+    {id:26,article:"Art. 298",question:"Art. 298 — Falsificar, no todo ou em parte, documento particular ou alterar documento particular ______: Pena — reclusão, de um a cinco anos, e multa.",answer:"verdadeiro"},
+    {id:27,article:"Art. 304",question:"Art. 304 — Fazer uso de qualquer dos papéis falsificados ou alterados, a que se referem os arts. 297 a 302: Pena — a ______ para falsificação ou alteração.",answer:"cominada"},
+    {id:28,article:"Art. 307",question:"Art. 307 — Atribuir-se ou atribuir a terceiro falsa identidade para obter ______, em proveito próprio ou alheio, ou para causar dano a outrem: Pena — detenção, de três meses a um ano, ou multa.",answer:"vantagem"},
+    {id:29,article:"Art. 312",question:"Art. 312 — Apropriar-se o funcionário público de dinheiro, valor ou qualquer outro bem móvel, público ou particular, de que tem a posse em razão do ______, ou desviá-lo, em proveito próprio ou alheio: Pena — reclusão, de dois a doze anos, e multa.",answer:"cargo"},
+    {id:30,article:"Art. 359",question:"Art. 359 — Exercer função, atividade, direito, autoridade ou múnus, de que foi suspenso ou ______ por decisão judicial: Pena — detenção, de três meses a dois anos, ou multa.",answer:"privado"},
+    {id:31,article:"Art. 5º, §1º",question:"A lei brasileira aplica-se aos crimes cometidos no território nacional, sem prejuízo das convenções, tratados e regras de direito internacional. O território brasileiro, para os efeitos penais, compreende também as hipóteses de ______ previstas no §1º.",answer:"extensão"},
+    {id:32,article:"Art. 7º",question:"Ficam sujeitos à lei brasileira, embora cometidos no estrangeiro, os crimes que o próprio artigo ______ em suas hipóteses de extraterritorialidade.",answer:"enumera"},
+    {id:33,article:"Art. 9º",question:"A sentença estrangeira, quando a aplicação da lei brasileira produz na espécie as mesmas consequências, pode ser ______ para efeitos civis e para sujeitar o condenado a medida de segurança.",answer:"homologada"},
+    {id:34,article:"Art. 11",question:"Desprezam-se, nas penas privativas de liberdade e nas restritivas de direitos, as ______ de dia e, na pena de multa, as frações de cruzeiro.",answer:"frações"},
+    {id:35,article:"Art. 100, §1º",question:"A ação pública é promovida pelo ______, dependendo, quando a lei o exige, de representação do ofendido ou de requisição do Ministro da Justiça.",answer:"Ministério Público"},
+    {id:36,article:"Art. 100, §2º",question:"A ação de iniciativa privada é promovida mediante ______ do ofendido ou de quem tenha qualidade para representá-lo.",answer:"queixa"},
+    {id:37,article:"Art. 106",question:"O perdão, no processo ou fora dele, expresso ou tácito, é ______ pelo querelado.",answer:"recusável"},
+    {id:38,article:"Art. 107",question:"Extingue-se a punibilidade pela ______, perempção ou pela morte do agente, entre outras hipóteses legais.",answer:"renúncia"},
+    {id:39,article:"Art. 109",question:"A prescrição, antes de transitar em julgado a sentença final, regula-se pelo máximo da pena ______ cominada ao crime.",answer:"abstratamente"},
+    {id:40,article:"Art. 110",question:"A prescrição depois de transitar em julgado a sentença condenatória regula-se pela pena ______ e verifica-se nos prazos fixados no artigo anterior.",answer:"aplicada"},
+    {id:41,article:"Art. 111",question:"A prescrição, antes de transitar em julgado a sentença final, começa a correr, em regra, do dia em que o crime se ______.",answer:"consumou"},
+    {id:42,article:"Art. 114",question:"A prescrição da pena de multa ocorrerá em ______ prazo de dois anos, quando a multa for a única cominada ou aplicada.",answer:"único"},
+    {id:43,article:"Art. 117",question:"O curso da prescrição interrompe-se pelo recebimento da denúncia ou da ______.",answer:"queixa"},
+    {id:44,article:"Art. 121, §2º",question:"No homicídio qualificado, a pena é de reclusão, de ______ a trinta anos.",answer:"doze"},
+    {id:45,article:"Art. 121, §3º",question:"Se o homicídio é culposo, a pena é de ______, de um a três anos.",answer:"detenção"},
+    {id:46,article:"Art. 121, §4º",question:"No homicídio culposo, a pena é aumentada de ______, se o crime resulta de inobservância de regra técnica de profissão, arte ou ofício.",answer:"1/3 (um terço)"},
+    {id:47,article:"Art. 297, §2º",question:"Para os efeitos penais, equipara-se a documento público o ______, o livro mercantil e o testamento particular.",answer:"testamento marítimo"},
+    {id:48,article:"Art. 299",question:"Art. 299 — Omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir ou fazer inserir declaração ______ de fato juridicamente relevante: Pena — reclusão, de um a cinco anos, e multa, se o documento é público; e reclusão de um a três anos, e multa, se o documento é particular.",answer:"falsa"},
+    {id:49,article:"Art. 311-A",question:"Utilizar ou divulgar, indevidamente, com o fim de beneficiar a si ou a outrem, ou de comprometer a credibilidade do ______, conteúdo sigiloso de concurso público ou processo seletivo para ingresso no ensino superior.",answer:"concurso"},
+    {id:50,article:"Art. 312, §3º",question:"Se o funcionário repara o dano antes da sentença irrecorrível, extingue-se a punibilidade; se lhe é posterior, reduz-se de ______ a pena imposta.",answer:"metade"},
+    {id:51,article:"Art. 316",question:"Art. 316 — ______, para si ou para outrem, direta ou indiretamente, ainda que fora da função ou antes de assumi-la, mas em razão dela, vantagem indevida: Pena — reclusão, de 2 (dois) a 12 (doze) anos, e multa.",answer:"Exigir"},
+    {id:52,article:"Art. 325",question:"Art. 325 — ______ fato de que tem ciência em razão do cargo e que deva permanecer em segredo, ou facilitar-lhe a revelação: Pena — detenção, de seis meses a dois anos, ou multa, se o fato não constitui crime mais grave.",answer:"Revelar"}
+  ],
 
-let current = 0;
-let correct = 0;
-let wrong = 0;
-let answered = false;
-let order = cards.map((_, i) => i);
+  improbidade: [
+    {id:53,article:"Lei 8.429/92 — Art. 9º",question:"Constitui ato de improbidade administrativa importando em enriquecimento ilícito auferir, mediante a prática de ato ______, qualquer tipo de vantagem patrimonial indevida em razão do exercício de cargo, de mandato, de função, de emprego ou de atividade nas entidades referidas no art. 1º desta Lei.",answer:"doloso"},
+    {id:54,article:"Lei 8.429/92 — Art. 9º, I",question:"I — receber, para si ou para outrem, dinheiro, bem móvel ou imóvel, ou qualquer outra vantagem econômica, direta ou indireta, a título de comissão, percentagem, gratificação ou ______ de quem tenha interesse, direto ou indireto, que possa ser atingido ou amparado por ação ou omissão decorrente das atribuições do agente público;",answer:"presente"},
+    {id:55,article:"Lei 8.429/92 — Art. 9º, II",question:"II — perceber vantagem econômica, direta ou indireta, para facilitar a aquisição, permuta ou locação de bem móvel ou imóvel, ou a contratação de serviços pelas entidades referidas no art. 1° por preço ______ ao valor de mercado;",answer:"superior"},
+    {id:56,article:"Lei 8.429/92 — Art. 9º, III",question:"III — perceber vantagem econômica, direta ou indireta, para facilitar a alienação, permuta ou locação de bem público ou o fornecimento de serviço por ente estatal por preço ______ ao valor de mercado;",answer:"inferior"},
+    {id:57,article:"Lei 8.429/92 — Art. 9º, IV",question:"IV — utilizar, em obra ou serviço particular, qualquer bem móvel, de propriedade ou à disposição de qualquer das entidades referidas no art. 1º desta Lei, bem como o trabalho de servidores, de empregados ou de ______ contratados por essas entidades;",answer:"terceiros"},
+    {id:58,article:"Lei 8.429/92 — Art. 9º, V",question:"V — receber vantagem econômica de qualquer natureza, direta ou indireta, para tolerar a exploração ou a prática de jogos de azar, de lenocínio, de narcotráfico, de contrabando, de usura ou de qualquer outra atividade ilícita, ou aceitar ______ de tal vantagem;",answer:"promessa"},
+    {id:59,article:"Lei 8.429/92 — Art. 9º, VI",question:"VI — receber vantagem econômica de qualquer natureza, direta ou indireta, para fazer declaração ______ sobre qualquer dado técnico que envolva obras públicas ou qualquer outro serviço ou sobre quantidade, peso, medida, qualidade ou característica de mercadorias ou bens fornecidos a qualquer das entidades referidas no art. 1º desta Lei;",answer:"falsa"},
+    {id:60,article:"Lei 8.429/92 — Art. 9º, VII",question:"VII — adquirir, para si ou para outrem, no exercício de mandato, de cargo, de emprego ou de função pública, e em razão deles, bens de qualquer natureza, decorrentes dos atos descritos no caput deste artigo, cujo valor seja desproporcional à evolução do patrimônio ou à ______ do agente público, assegurada a demonstração pelo agente da licitude da origem dessa evolução;",answer:"renda"},
+    {id:61,article:"Lei 8.429/92 — Art. 9º, VIII",question:"VIII — aceitar emprego, comissão ou exercer atividade de consultoria ou assessoramento para pessoa física ou jurídica que tenha interesse suscetível de ser atingido ou amparado por ação ou omissão decorrente das atribuições do agente público, durante a ______;",answer:"atividade"},
+    {id:62,article:"Lei 8.429/92 — Art. 9º, IX",question:"IX — perceber vantagem econômica para intermediar a liberação ou aplicação de ______ pública de qualquer natureza;",answer:"verba"},
+    {id:63,article:"Lei 8.429/92 — Art. 9º, X",question:"X — receber vantagem econômica de qualquer natureza, direta ou indiretamente, para ______ ato de ofício, providência ou declaração a que esteja obrigado;",answer:"omitir"},
+    {id:64,article:"Lei 8.429/92 — Art. 9º, XI",question:"XI — incorporar, por qualquer forma, ao seu patrimônio bens, rendas, verbas ou valores integrantes do ______ patrimonial das entidades mencionadas no art. 1° desta lei;",answer:"acervo"},
+    {id:65,article:"Lei 8.429/92 — Art. 9º, XII",question:"XII — usar, em proveito próprio, bens, rendas, verbas ou valores integrantes do acervo ______ das entidades mencionadas no art. 1° desta lei.",answer:"patrimonial"},
+    {id:66,article:"Lei 8.429/92 — Art. 13",question:"A posse e o exercício de agente público ficam condicionados à apresentação de declaração de imposto de renda e proventos de qualquer natureza, que tenha sido apresentada à Secretaria Especial da Receita Federal do Brasil, a fim de ser ______ no serviço de pessoal competente.",answer:"arquivada"},
+    {id:67,article:"Lei 8.429/92 — Art. 13, §2º",question:"§ 2º A declaração de bens a que se refere o caput deste artigo será atualizada ______ e na data em que o agente público deixar o exercício do mandato, do cargo, do emprego ou da função.",answer:"anualmente"},
+    {id:68,article:"Lei 8.429/92 — Art. 13, §2º",question:"§ 2º A declaração de bens a que se refere o caput deste artigo será atualizada anualmente e na data em que o agente público deixar o exercício do mandato, do cargo, do emprego ou da ______.",answer:"função"},
+    {id:69,article:"Lei 8.429/92 — Art. 13, §3º",question:"§ 3º Será apenado com a pena de ______, sem prejuízo de outras sanções cabíveis, o agente público que se recusar a prestar a declaração dos bens a que se refere o caput deste artigo dentro do prazo determinado ou que prestar declaração falsa.",answer:"demissão"},
+    {id:70,article:"Lei 8.429/92 — Art. 13, §3º",question:"§ 3º Será apenado com a pena de demissão, sem prejuízo de outras sanções cabíveis, o agente público que se recusar a prestar a declaração dos bens a que se refere o caput deste artigo dentro do prazo ______ ou que prestar declaração falsa.",answer:"determinado"},
+    {id:71,article:"Lei 8.429/92 — Art. 13, §3º",question:"§ 3º Será apenado com a pena de demissão o agente público que se recusar a prestar a declaração dos bens dentro do prazo determinado ou que prestar declaração ______.",answer:"falsa"},
+    {id:72,article:"Lei 8.429/92 — Art. 9º, I",question:"No inciso I do art. 9º, a vantagem econômica pode ser recebida de forma direta ou ______.",answer:"indireta"},
+    {id:73,article:"Lei 8.429/92 — Art. 9º, II",question:"No inciso II do art. 9º, a vantagem econômica pode ser direta ou indireta e está relacionada à facilitação da aquisição, permuta ou locação de bem móvel ou ______.",answer:"imóvel"},
+    {id:74,article:"Lei 8.429/92 — Art. 9º, III",question:"No inciso III do art. 9º, a vantagem econômica está relacionada à facilitação da alienação, permuta ou locação de bem ______.",answer:"público"},
+    {id:75,article:"Lei 8.429/92 — Art. 9º, IV",question:"O inciso IV do art. 9º trata da utilização, em obra ou serviço particular, de bem móvel pertencente ou à disposição das entidades referidas no art. 1º, bem como do trabalho de servidores, empregados ou ______ contratados por essas entidades.",answer:"terceiros"},
+    {id:76,article:"Lei 8.429/92 — Art. 9º, V",question:"Entre as atividades ilícitas expressamente mencionadas no inciso V do art. 9º estão jogos de azar, lenocínio, narcotráfico, contrabando e ______.",answer:"usura"},
+    {id:77,article:"Lei 8.429/92 — Art. 9º, VI",question:"O inciso VI do art. 9º menciona declaração falsa sobre dados técnicos que envolvam obras públicas ou qualquer outro serviço, ou sobre quantidade, peso, medida, qualidade ou característica de ______ ou bens fornecidos às entidades referidas no art. 1º.",answer:"mercadorias"},
+    {id:78,article:"Lei 8.429/92 — Art. 9º, VII",question:"No inciso VII do art. 9º, é assegurada ao agente a demonstração da ______ da origem da evolução de seu patrimônio ou renda.",answer:"licitude"},
+    {id:79,article:"Lei 8.429/92 — Art. 9º, VIII",question:"O inciso VIII do art. 9º menciona atividade de consultoria ou ______ para pessoa física ou jurídica que tenha interesse suscetível de ser atingido ou amparado pelas atribuições do agente público.",answer:"assessoramento"},
+    {id:80,article:"Lei 8.429/92 — Art. 9º, IX",question:"O inciso IX do art. 9º trata da percepção de vantagem econômica para intermediar a liberação ou ______ de verba pública de qualquer natureza.",answer:"aplicação"},
+    {id:81,article:"Lei 8.429/92 — Art. 9º, X",question:"O inciso X do art. 9º trata do recebimento de vantagem econômica para ______ ato de ofício, providência ou declaração a que o agente esteja obrigado.",answer:"omitir"},
+    {id:82,article:"Lei 8.429/92 — Art. 9º, XI",question:"O inciso XI do art. 9º considera ato de improbidade incorporar ao patrimônio bens, rendas, verbas ou valores integrantes do ______ patrimonial das entidades mencionadas no art. 1º.",answer:"acervo"},
+    {id:83,article:"Lei 8.429/92 — Art. 9º, XII",question:"O inciso XII do art. 9º trata do uso, em proveito próprio, de bens, rendas, verbas ou valores integrantes do acervo ______ das entidades mencionadas no art. 1º.",answer:"patrimonial"},
+    {id:84,article:"Lei 8.429/92 — Art. 13",question:"A posse e o exercício de agente público ficam condicionados à apresentação de declaração de ______ e proventos de qualquer natureza.",answer:"imposto de renda"},
+    {id:85,article:"Lei 8.429/92 — Art. 13",question:"A declaração de imposto de renda e proventos de qualquer natureza deve ter sido apresentada à Secretaria Especial da ______ do Brasil.",answer:"Receita Federal"},
+    {id:86,article:"Lei 8.429/92 — Art. 13, §3º",question:"Além da recusa em prestar a declaração dos bens dentro do prazo determinado, também enseja a pena de demissão a prestação de declaração ______.",answer:"falsa"}
+  ]
+};
 
-const STORAGE_KEY = "questoesoficial-progress-v3";
+const info = {
+  penal:{name:"Direito Penal",eyebrow:"DIREITO PENAL"},
+  improbidade:{name:"Improbidade",eyebrow:"LEI DE IMPROBIDADE"}
+};
 
-const questionEl = document.getElementById("question");
-const answerEl = document.getElementById("answer");
-const answerBox = document.getElementById("answerBox");
-const answerBtn = document.getElementById("answerBtn");
-const correctBtn = document.getElementById("correctBtn");
-const wrongBtn = document.getElementById("wrongBtn");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
-const correctStat = document.getElementById("correctStat");
-const wrongStat = document.getElementById("wrongStat");
-const accuracyStat = document.getElementById("accuracyStat");
-const questionStat = document.getElementById("questionStat");
-const questionNumber = document.getElementById("questionNumber");
-const articleTag = document.getElementById("articleTag");
-const shuffleBtn = document.getElementById("shuffleBtn");
-const resetBtn = document.getElementById("resetBtn");
+const KEY="questoesoficial-progress-v3";
+const $=id=>document.getElementById(id);
+let state={subject:null,questions:[],index:0,answered:{},revealed:false};
 
-function saveProgress() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ current, correct, wrong, order }));
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch{return{}}}
+function save(){const x=load();x[state.subject]=state.answered;localStorage.setItem(KEY,JSON.stringify(x))}
+function stats(){let v=Object.values(state.answered),c=v.filter(x=>x==="correct").length,w=v.filter(x=>x==="wrong").length;return{c,w,a:c+w?Math.round(c/(c+w)*100):0}}
+function render(){
+  const q=state.questions[state.index]; if(!q)return;
+  $("article").textContent=q.article;$("question").textContent=q.question;$("answer").textContent=q.answer;
+  $("number").textContent=state.index+1;$("total").textContent=state.questions.length;
+  const s=stats();$("correct").textContent=s.c;$("wrong").textContent=s.w;$("accuracy").textContent=s.a+"%";
+  $("progress").style.width=((state.index+1)/state.questions.length*100)+"%";
+  $("answerBox").classList.add("hidden");$("results").classList.add("hidden");$("reveal").classList.remove("hidden");state.revealed=false;
 }
-
-function loadProgress() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (!saved) return;
-    current = Number.isInteger(saved.current) ? saved.current : 0;
-    correct = Number.isInteger(saved.correct) ? saved.correct : 0;
-    wrong = Number.isInteger(saved.wrong) ? saved.wrong : 0;
-    if (Array.isArray(saved.order) && saved.order.length === cards.length) order = saved.order;
-  } catch (e) {
-    console.log("Não foi possível carregar o progresso.");
-  }
+function openSubject(subject){
+  state.subject=subject;state.questions=[...questionBanks[subject]];state.index=0;
+  const p=load();state.answered=p[subject]||{};
+  $("menu").classList.add("hidden");$("quiz").classList.remove("hidden");
+  $("title").textContent=info[subject].name;$("eyebrow").textContent=info[subject].eyebrow;render();scrollTo(0,0);
 }
-
-function getArticle(text) {
-  const match = text.match(/^Art\.\s+([^ -]+)/);
-  return match ? `Art. ${match[1]}` : "Código Penal";
-}
-
-function updateStats() {
-  const totalAnswered = correct + wrong;
-  const accuracy = totalAnswered ? Math.round((correct / totalAnswered) * 100) : 0;
-  correctStat.textContent = correct;
-  wrongStat.textContent = wrong;
-  accuracyStat.textContent = `${accuracy}%`;
-}
-
-function render() {
-  const card = cards[order[current]];
-  const percentage = ((current + 1) / cards.length) * 100;
-
-  questionEl.textContent = card.q;
-  answerEl.textContent = card.a;
-  answerBox.classList.add("hidden");
-  answerBtn.disabled = false;
-  correctBtn.disabled = true;
-  wrongBtn.disabled = true;
-  answered = false;
-
-  questionNumber.textContent = `QUESTÃO ${String(current + 1).padStart(2, "0")}`;
-  articleTag.textContent = getArticle(card.q);
-  progressText.textContent = `${current + 1} de ${cards.length}`;
-  questionStat.textContent = `${current + 1}/${cards.length}`;
-  progressBar.style.width = `${percentage}%`;
-  prevBtn.disabled = current === 0;
-  nextBtn.disabled = false;
-
-  updateStats();
-  saveProgress();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function showAnswer() {
-  if (answered) return;
-  answerBox.classList.remove("hidden");
-  answerBtn.disabled = true;
-  correctBtn.disabled = false;
-  wrongBtn.disabled = false;
-  answered = true;
-}
-
-function goNext() {
-  current = current < cards.length - 1 ? current + 1 : 0;
-  render();
-}
-
-function goPrevious() {
-  if (current > 0) {
-    current--;
-    render();
-  }
-}
-
-function markCorrect() {
-  if (!answered) return;
-  correct++;
-  goNext();
-}
-
-function markWrong() {
-  if (!answered) return;
-  wrong++;
-  goNext();
-}
-
-function shuffle() {
-  for (let i = order.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [order[i], order[j]] = [order[j], order[i]];
-  }
-  current = 0;
-  render();
-}
-
-function resetProgress() {
-  if (!confirm("Tem certeza que deseja zerar seus acertos e erros?")) return;
-  current = 0;
-  correct = 0;
-  wrong = 0;
-  order = cards.map((_, i) => i);
-  localStorage.removeItem(STORAGE_KEY);
-  render();
-}
-
-answerBtn.addEventListener("click", showAnswer);
-correctBtn.addEventListener("click", markCorrect);
-wrongBtn.addEventListener("click", markWrong);
-nextBtn.addEventListener("click", goNext);
-prevBtn.addEventListener("click", goPrevious);
-shuffleBtn.addEventListener("click", shuffle);
-resetBtn.addEventListener("click", resetProgress);
-
-document.addEventListener("keydown", (event) => {
-  if (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA") return;
-  if (event.code === "Space") { event.preventDefault(); showAnswer(); }
-  if (event.key === "ArrowRight") goNext();
-  if (event.key === "ArrowLeft") goPrevious();
-});
-
-loadProgress();
-render();
+function reveal(){state.revealed=true;$("answerBox").classList.remove("hidden");$("results").classList.remove("hidden");$("reveal").classList.add("hidden")}
+function mark(r){state.answered[state.questions[state.index].id]=r;save();render();state.revealed=true;$("answerBox").classList.remove("hidden");$("results").classList.remove("hidden");$("reveal").classList.add("hidden")}
+function next(){if(state.index<state.questions.length-1){state.index++;render()}}
+function prev(){if(state.index>0){state.index--;render()}}
+function shuffle(){for(let i=state.questions.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[state.questions[i],state.questions[j]]=[state.questions[j],state.questions[i]]}state.index=0;render()}
+function reset(){if(confirm("Reiniciar o progresso desta matéria?")){state.answered={};save();state.index=0;render()}}
+document.querySelectorAll("[data-subject]").forEach(b=>b.onclick=()=>openSubject(b.dataset.subject));
+$("back").onclick=()=>{$("quiz").classList.add("hidden");$("menu").classList.remove("hidden");scrollTo(0,0)};
+$("reveal").onclick=reveal;$("markWrong").onclick=()=>mark("wrong");$("markCorrect").onclick=()=>mark("correct");
+$("next").onclick=next;$("prev").onclick=prev;$("shuffle").onclick=shuffle;$("reset").onclick=reset;
+document.onkeydown=e=>{
+ if($("quiz").classList.contains("hidden"))return;
+ if(e.code==="Space"){e.preventDefault();if(!state.revealed)reveal()}
+ if(e.key==="ArrowRight")next();if(e.key==="ArrowLeft")prev();
+ if(e.key==="1"&&state.revealed)mark("wrong");if(e.key==="2"&&state.revealed)mark("correct");
+};
+$("penalCount").textContent=questionBanks.penal.length+" questões";
+$("improbidadeCount").textContent=questionBanks.improbidade.length+" questões";

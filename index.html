@@ -1,133 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b1020">
-  <title>Questões Oficial — Código Penal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questões Oficial</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="background-glow glow-one"></div>
-  <div class="background-glow glow-two"></div>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">Q</div><div><b>Questões Oficial</b><small>Revisão para concursos</small></div></div>
+  <span class="status"><i></i> Estudo</span>
+</header>
 
-  <main class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-icon">⚖</div>
-        <div>
-          <div class="brand-title">Questões Oficial</div>
-          <div class="brand-subtitle">Código Penal • Oficial de Justiça</div>
-        </div>
-      </div>
+<main>
+<section id="menu">
+  <div class="intro">
+    <span>ESCOLHA A MATÉRIA</span>
+    <h1>O que você quer estudar?</h1>
+    <p>Selecione uma matéria para começar.</p>
+  </div>
+  <div class="subjects">
+    <button class="subject" data-subject="penal">
+      <strong>⚖ Direito Penal</strong>
+      <p>Código Penal e legislação penal selecionada.</p>
+      <em id="penalCount"></em>
+    </button>
+    <button class="subject" data-subject="improbidade">
+      <strong>▣ Improbidade</strong>
+      <p>Lei nº 8.429/92 — Arts. 9º e 13.</p>
+      <em id="improbidadeCount"></em>
+    </button>
+    <div class="subject disabled"><strong>＋ Mais matérias</strong><p>Novas matérias poderão ser adicionadas aqui.</p><em>Em breve</em></div>
+  </div>
+</section>
 
-      <div class="header-badge">
-        <span class="status-dot"></span>
-        Estudo ativo
-      </div>
-    </header>
+<section id="quiz" class="hidden">
+  <div class="quiz-head">
+    <button id="back">← Matérias</button>
+    <div><span id="eyebrow"></span><h1 id="title"></h1></div>
+  </div>
 
-<section class="dashboard">
-      <div class="stat-card">
-        <div class="stat-icon blue">✓</div>
-        <div>
-          <div class="stat-label">Acertos</div>
-          <div id="correctStat" class="stat-value">0</div>
-        </div>
-      </div>
+  <div class="stats">
+    <div><small>Acertos</small><b id="correct">0</b></div>
+    <div><small>Erros</small><b id="wrong">0</b></div>
+    <div><small>Aproveitamento</small><b id="accuracy">0%</b></div>
+    <div><small>Questão</small><b><span id="number">1</span>/<span id="total">1</span></b></div>
+  </div>
 
-      <div class="stat-card">
-        <div class="stat-icon red">×</div>
-        <div>
-          <div class="stat-label">Erros</div>
-          <div id="wrongStat" class="stat-value">0</div>
-        </div>
-      </div>
+  <div class="track"><div id="progress"></div></div>
 
-      <div class="stat-card">
-        <div class="stat-icon purple">%</div>
-        <div>
-          <div class="stat-label">Aproveitamento</div>
-          <div id="accuracyStat" class="stat-value">0%</div>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon gold">#</div>
-        <div>
-          <div class="stat-label">Questão</div>
-          <div id="questionStat" class="stat-value">1/52</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="progress-wrap">
-      <div class="progress-info">
-        <span>Progresso da sessão</span>
-        <strong id="progressText">1 de 52</strong>
-      </div>
-      <div class="progress-track">
-        <div id="progressBar" class="progress-bar"></div>
-      </div>
-    </section>
-
-    <section class="question-card">
-      <div class="question-top">
-        <span class="pill">Complete a lacuna</span>
-        <span class="article-tag" id="articleTag">Art. 1º</span>
-      </div>
-
-      <div class="question-number" id="questionNumber">QUESTÃO 01</div>
-      <div id="question" class="question"></div>
-
-      <div id="answerBox" class="answer-box hidden">
-        <div class="answer-label">RESPOSTA</div>
-        <div id="answer" class="answer"></div>
-      </div>
-
-      <button id="answerBtn" class="reveal-btn">
-        <span>Mostrar resposta</span>
-        <span class="key-hint">ESPAÇO</span>
-      </button>
-
-      <div class="evaluation">
-        <button id="wrongBtn" class="eval-btn wrong" disabled>
-          <span class="eval-symbol">×</span>
-          Errei
-        </button>
-        <button id="correctBtn" class="eval-btn correct" disabled>
-          <span class="eval-symbol">✓</span>
-          Acertei
-        </button>
-      </div>
-    </section>
-
-    <div class="navigation">
-      <button id="prevBtn" class="nav-btn secondary">← <span>Anterior</span></button>
-      <button id="nextBtn" class="nav-btn primary">Próxima <span>→</span></button>
+  <article class="card">
+    <span id="article" class="tag"></span>
+    <div id="question" class="question"></div>
+    <div id="answerBox" class="answer hidden"><small>RESPOSTA</small><b id="answer"></b></div>
+    <button id="reveal" class="primary">Mostrar resposta</button>
+    <div id="results" class="results hidden">
+      <button id="markWrong">✕ Errei</button><button id="markCorrect">✓ Acertei</button>
     </div>
+  </article>
 
-    <div class="tools">
-      <button id="shuffleBtn" class="tool-btn">↗ <span>Embaralhar questões</span></button>
-      <button id="resetBtn" class="tool-btn danger">↻ <span>Zerar progresso</span></button>
-    </div>
+  <div class="nav"><button id="prev">← Anterior</button><button id="next">Próxima →</button></div>
+  <div class="tools"><button id="shuffle">↗ Embaralhar</button><button id="reset">↻ Reiniciar matéria</button></div>
+  <div class="keys"><kbd>Espaço</kbd> resposta <kbd>←</kbd><kbd>→</kbd> navegação <kbd>1</kbd> errei <kbd>2</kbd> acertei</div>
+</section>
+</main>
 
-    <div class="keyboard-tip">
-      <span>⌨</span>
-      <div><strong>Atalhos:</strong> Espaço revela a resposta • ← → navegam entre as questões</div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-brand">Questões Oficial</div>
-    <div>Esse site é gratuito.</div>
-    <div>Desenvolvido por <a href="https://www.instagram.com/Zeapenasconcurseiro/" target="_blank" rel="noopener">@Zeapenasconcurseiro</a>, no Instagram.</div>
-  </footer>
-
-  <script src="script.js"></script>
+<footer>Esse site é gratuito. Desenvolvido por <a href="https://www.instagram.com/Zeapenasconcurseiro/" target="_blank">@Zeapenasconcurseiro</a>.</footer>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
